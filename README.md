@@ -1,6 +1,6 @@
 # vue-framescreen
 
-> A Vue.js project
+> 骨架屏
 
 ## Build Setup
 
