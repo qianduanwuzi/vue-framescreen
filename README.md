@@ -2,7 +2,9 @@
 
 > 骨架屏
 
-## Build Setup
+# view  
+ ![image](https://github.com/qianduanwuzi/img/blob/master/gif/GIF5.gif)
+
 
 ``` bash
 # install dependencies
