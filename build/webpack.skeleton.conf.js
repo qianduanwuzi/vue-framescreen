@@ -1,46 +1,39 @@
 const path = require('path')
-const webpack = require('webpack')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
 const nodeExternals = require('webpack-node-externals')
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const utils = require('./utils')
+const config = require('../config')
+const isProduction = process.env.NODE_ENV === 'production'
+const sourceMapEnabled = isProduction
+  ? config.build.productionSourceMap
+  : config.dev.cssSourceMap
 
-module.exports = {
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
+let skeletonWebpackConfig = merge(baseWebpackConfig, {
   target: 'node',
+  devtool: false,
   entry: {
-    skeleton: './src/skeleton-entry.js'
+    app: resolve('../src/modules/skeleton/skeleton/skeleton-entry.js')
+    // page2: resolve('../src/modules/skeleton/skeleton-one/skeleton-one-entry.js')
   },
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '/dist/',
-    filename: '[name].js',
+  output: Object.assign({}, baseWebpackConfig.output, {
     libraryTarget: 'commonjs2'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      }
-    ]
-  },
+  }),
   externals: nodeExternals({
     whitelist: /\.css$/
   }),
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
-  },
-  plugins: [
-    new VueSSRServerPlugin({
-      filename: 'skeleton.json'
-    })
-  ]
-}
+  plugins: []
+})
+
+// important: enable extract-text-webpack-plugin
+skeletonWebpackConfig.module.rules[0].options.loaders = utils.cssLoaders({
+  sourceMap: sourceMapEnabled,
+  extract: true
+}),
+
+module.exports = skeletonWebpackConfig
+

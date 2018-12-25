@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>vue-framescreen</title>
-  <style data-vue-ssr-id="61f71fb6:0">
+<template>
+  <div class="skeleton page">
+    <div class="skeleton-nav"></div>
+    <div class="skeleton-swiper"></div>
+    <ul class="skeleton-tabs">
+      <li v-for="i in 8" class="skeleton-tabs-item"><span></span></li>
+    </ul>
+    this is skeleton
+    <div class="skeleton-banner"></div>
+    <div v-for="i in 6" class="skeleton-productions"></div>
+  </div>
+</template>
+
+<style>
 .skeleton {
   position: relative;
   height: 100%;
   overflow: hidden;
   padding: 15px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background: #fff;
 }
 .skeleton-nav {
@@ -28,17 +34,13 @@
   list-style: none;
   padding: 0;
   margin: 0 -15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .skeleton-tabs-item {
   width: 25%;
   height: 55px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   text-align: center;
   margin-bottom: 15px;
 }
@@ -59,10 +61,4 @@
   margin-bottom: 15px;
   background: #eee;
 }
-</style></head>
-  <body>
-    <div id="app">
-      <!-- built files will be auto injected -->
-    </div>
-  </body>
-</html>
+</style>

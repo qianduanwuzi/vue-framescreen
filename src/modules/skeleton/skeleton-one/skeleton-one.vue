@@ -5,6 +5,7 @@
     <ul class="skeleton-tabs">
       <li v-for="i in 8" class="skeleton-tabs-item"><span></span></li>
     </ul>
+    this is skeleton-one
     <div class="skeleton-banner"></div>
     <div v-for="i in 6" class="skeleton-productions"></div>
   </div>
